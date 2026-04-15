@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, LogIn, AlertCircle } from 'lucide-react';
+import API from '../api/axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,8 +22,7 @@ const Login = () => {
     }
 
     try {
-
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await API.post('/auth/login', {
         email,
         password,
       });
@@ -31,7 +30,6 @@ const Login = () => {
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userName', res.data.name || 'User');
-
         navigate('/dashboard');
       }
     } catch (err) {
@@ -43,12 +41,10 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#030712] flex items-center justify-center px-4 py-12 relative overflow-hidden">
-
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-violet-600/10 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-fuchsia-600/10 blur-[120px] rounded-full"></div>
 
       <div className="relative z-10 w-full max-w-md bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 shadow-2xl">
-
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-violet-600/20 rounded-2xl border border-violet-500/30 mb-4">
             <LogIn className="text-violet-400" size={32} />
