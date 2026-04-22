@@ -1,36 +1,35 @@
-# 🚀 TaskMatrix | Week 14: The Walking Skeleton
+# 🚀 TaskMatrix | Week 15: Feature Complete (CRUD & Monetization)
 
-TaskMatrix is a full-stack project management tool designed to help software teams organize their workflow efficiently. The primary objective of **Week 14** was to architect a **"Walking Skeleton"** — a minimal end-to-end implementation that connects the frontend, backend, and database into a functional ecosystem.
+TaskMatrix is a robust project management tool. **Week 15** marks the transition from a "Walking Skeleton" to a **Feature Complete** application, featuring full CRUD operations and a third-party payment gateway integration.
 
 ## 📸 Preview
-*Replace these placeholders with your actual screenshot paths once you upload them to your repo.*
-
-![Login Flow](./assest/Preview2.png)
-![Register Flow](./assest/Preview1.png)
-![Dashboard Overview](./assest/Preview3.png)
+![Login View](./assest/Login.png)
+![Register View](./assest/Register.png)
+![Dashboard View](./assest/Dashboard.png)
+![Stripe Checkout](./assest/Payment.png) 
+![Success Page](./assest/Payment2.png) 
 
 ## 📺 Project Demo
-[![Watch the Video Demo](https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+[![Watch the Video Demo](https://img.shields.io/badge/Watch-Video_Demo-red?style=for-the-badge&logo=youtube)](https://youtu.be/Kwgc18f74kc)
 
-## 🌌 Core Features (Week 14 Milestones)
-- **End-to-End Authentication:** A seamless bridge between the React frontend, Node/Express backend, and MongoDB Atlas.
-- **Secure Sessions:** Implementation of **JWT (JSON Web Tokens)** and LocalStorage to manage persistent user login states.
-- **Premium Glassmorphism UI:** A modern, high-contrast interface built with **Tailwind CSS**, featuring violet-themed gradients and backdrop-blur effects.
-- **Route Protection:** Secure Private Routes that ensure the Dashboard is only accessible to authenticated users.
-- **Dynamic User Experience:** Real-time feedback for registration errors and a personalized dashboard greeting (e.g., "Welcome Back, Shivansh!").
+## 🌌 Core Features (Week 15 Milestones)
+- **Full CRUD Operations:** Users can now **Create, Read, Update, and Delete** tasks directly from their dashboard with instant UI feedback.
+- **Optimistic UI Updates:** Task deletion and creation happen without full page reloads, providing a snappy, modern feel.
+- **Stripe Monetization:** Integrated **Stripe (Test Mode)** for a "Premium" upgrade flow, including a custom Success Page redirect.
+- **Data Persistence:** All tasks are securely stored in MongoDB and linked to the specific authenticated user.
+- **Advanced UI Components:** Implementation of modals for task editing andLucide-React icons for intuitive navigation.
 
-## 🛠️ Tech Stack
-- **Frontend:** React.js (Vite Architecture).
-- **Backend:** Node.js & Express.js.
-- **Database:** MongoDB Atlas (Mongoose ODM).
-- **Styling:** Tailwind CSS (Custom Glassmorphism configuration).
-- **Security:** BcryptJS for password hashing and JWT for session security.
+## 🛠️ Tech Stack Expansion
+- **Frontend:** React.js (Vite), Axios, Lucide-React.
+- **Backend:** Node.js, Express.js, Stripe SDK.
+- **Database:** MongoDB Atlas (Mongoose).
+- **Styling:** Tailwind CSS (Glassmorphism & Professional Dark Mode).
 
 ## ⚙️ Technical Challenges Solved
-1. **Database Schema Integrity:** Engineered a secure User model in MongoDB to store unique emails and hashed credentials.
-2. **Context API Integration:** Developed a global `AuthContext` to synchronize the user's authentication state across the entire application.
-3. **Smooth Scroll & Navigation:** Utilized React Router for seamless transitions between the Login, Register, and Dashboard views.
-4. **CORS Optimization:** Configured backend middleware to allow secure communication with the frontend running on `localhost:5173`.
+1. **Stripe Session Logic:** Successfully engineered the backend to generate dynamic Checkout Sessions and handle secure frontend redirects.
+2. **State Syncing:** Solved the "refresh to see changes" issue by manually updating the React state array after successful API calls.
+3. **Protected CRUD:** Implemented backend middleware to verify JWT tokens before allowing any Update or Delete operations, ensuring users can only edit their own data.
+4. **Modal Logic:** Managed complex form states for the "Edit Task" functionality to pre-fill data accurately.
 
 ---
-**Developed by [Shivansh Vishwakarma](https://github.com/technoshiva123/Prodesk-IT-Week-14.git)** *Full Stack Developer Intern @ Prodesk IT*
+**Developed by [Shivansh Vishwakarma](https://github.com/technoshiva123)** *Full Stack Developer Intern @ Prodesk IT*

@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Success from './pages/Success';
 
 function App() {
   return (
@@ -19,8 +20,11 @@ function App() {
             <Dashboard />
           </PrivateRoute>
         } />
-
-        <Route path="/" element={<h1 className="text-white text-center mt-10">Welcome to TaskMatrix</h1>} />
+        <Route path="/success" element={
+          <PrivateRoute>
+            <Success />
+          </PrivateRoute>
+        } />
       </Routes>
     </Router>
   );

@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
     try {
@@ -14,9 +13,10 @@ router.post('/register', async (req, res) => {
         user = new User({ name, email, password });
         await user.save();
 
-        res.status(201).json({ message: "User registered successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Register Error", error: error.message });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        res.status(201).json({ token, user: { id: user._id, name, email } });
+    } catch (err) {
+        res.status(500).json({ message: "Server Error", error: err.message });
     }
 });
 
@@ -24,19 +24,11 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-
-        if (user && (await bcrypt.compare(password, user.password))) {
-            const token = jwt.sign(
-                { id: user._id }, 
-                process.env.JWT_SECRET, 
-                { expiresIn: '1d' }
-            );
-            res.json({ token, name: user.name });
-        } else {
-            res.status(401).json({ message: "Invalid credentials" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Login Error", error: error.message });
+        if (!user) return res.status(400).json({ message: "Invalid Credentials" });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        res.json({ token, user: { id: user._id, name: user.name, email } });
+    } catch (err) {
+        res.status(500).json({ message: "Login failed" });
     }
 });
 
